@@ -1,0 +1,62 @@
+html,
+body {
+  font-size: 14px;
+  height: 100%;
+  background: #f8f8f8;
+}
+.hover {
+  opacity: 0.8;
+}
+.border-t,
+.border-b {
+  position: relative;
+}
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: transparent;
+}
+ul li,
+ol li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: #999;
+}
+input {
+  border: none;
+  outline: none;
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+img {
+  display: block;
+}
+/*横向布局浮动*/
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+.cl:after {
+  content: "";
+  height: 0;
+  display: block;
+  overflow: hidden;
+  clear: both;
+}
+[v-cloak] {
+  display: none;
+}
+img {
+  display: block;
+}
+.center {
+  text-align: center;
+}
+.margin_auto {
+  margin: 0 auto;
+}

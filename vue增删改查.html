@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ch">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container" id="app">
+        <div>
+            <input type="text" placeholder="search" list="cars" class="search" @input="search" v-model="v" />
+            <datalist id="cars">
+                <option v-for="item in searchlist" :value="item"></option>
+            </datalist>
+            <input type="button" class="add" @click="add" value="新增" />
+        </div>
+        <div>
+            <table>
+                <tr>
+                    <th>id</th>
+                    <th>用户名</th>
+                    <th>邮箱</th>
+                    <th>性别</th>
+                    <th>省份</th>
+                    <th>爱好</th>
+                    <th>操作</th>
+                </tr>
+                <tr v-cloak v-for="(item, index) of list">
+                    <td>{{ item.id}}</td>
+                    <td>{{ item.username }}</td>
+                    <td>{{ item.email }}</td>
+                    <td>{{ item.sex }}</td>
+                    <td>{{ item.province }}</td>
+                    <td>{{ item.hobby.join(' | ') }}</td>
+                    <td>
+                        <a href="javascript:;" @click="adds(index)">修改</a> |
+                        <a href="javascript:;" @click="del(index,item.id)">删除</a>
+                    </td>
+                </tr>
+            </table>
+            <table style="margin-top: 100px;">
+                <tr>
+                    <th>id</th>
+                    <th>用户名</th>
+                    <th>邮箱</th>
+                    <th>性别</th>
+                    <th>省份</th>
+                    <th>爱好</th>
+                    <th>操作</th>
+                </tr>
+                <tr v-cloak v-for="(item, index) of list3">
+                    <td>{{ item.id}}</td>
+                    <td>{{ item.username }}</td>
+                    <td>{{ item.email }}</td>
+                    <td>{{ item.sex }}</td>
+                    <td>{{ item.province }}</td>
+                    <td>{{ item.hobby.join(' | ') }}</td>
+                    <td>
+                        <a href="javascript:;" @click="add(index)">修改</a> |
+                        <a href="javascript:;" @click="del(index,item.id)">删除</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+</body>
+
+</html>
+<script src="./vue.min.js"></script>
+<script>
+    var app = new Vue({
+        el: "#app",
+        data: {
+            isActive: false, // 是否显示弹窗
+            selected: -1, // 选择了哪条记录
+            selectedlist: {}, // 选中的信息
+            slist: [],
+            searchlist: [],
+            list: [{
+                username: "aaaaa",
+                email: "123@qq.com",
+                sex: "男",
+                province: "北京市",
+                hobby: ["篮球", "读书", "编程"],
+                id: 1
+            },
+            {
+                username: "bbbbb",
+                email: "bbbbbbb@163.com",
+                sex: "女",
+                province: "河北省",
+                hobby: ["弹琴", "读书", "插画"],
+                id: 2
+            },
+            {
+                username: "cccc",
+                email: "abababab@qq.com",
+                sex: "女",
+                province: "重庆市",
+                hobby: ["篮球"],
+                id: 3
+            },
+            {
+                username: "dddd",
+                email: "123@qq.com",
+                sex: "男",
+                province: "北京市",
+                hobby: ["篮球", "读书", "编程"],
+                id: 4
+            },
+            {
+                username: "eeee",
+                email: "bbbbbbb@163.com",
+                sex: "女",
+                province: "河北省",
+                hobby: ["弹琴", "读书", "插画"],
+                id: 5
+            },
+            {
+                username: "ffff",
+                email: "abababab@qq.com",
+                sex: "女",
+                province: "重庆市",
+                hobby: ["篮球"],
+                id: 6
+            },
+            ],
+            showOverlay: [],
+            v: '',
+            list2: [],
+            list3: []
+        },
+        methods: {
+            adds: function (index) {
+                this.list[index].sex = '南部'
+            },
+            search: function () {
+                console.log(this.v)
+                console.log(this.list)
+                this.list.forEach(
+                    (item, index) => {
+                        if (item.username.indexOf(this.v) != -1) {
+                            console.log(item)
+                            this.list.push(item)
+                        }
+                    }
+                )
+                this.list3 = new Set(this.list)
+            },
+            add: function () {
+                this.selectedlist = {
+                    username: "hha",
+                    email: "222",
+                    sex: "男",
+                    province: "北京市",
+                    hobby: [],
+                    id: 6
+                };
+                this.list.push(this.selectedlist)
+            },
+            // delete list in index location
+            del(index, id) {
+                this.list.splice(
+                    this.list.findIndex(item => item.id === id),
+                    1
+                );
+            },
+        }
+    });
+</script>

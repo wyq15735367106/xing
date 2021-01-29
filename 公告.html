@@ -1,0 +1,82 @@
+<style media="screen">
+    /*公告*/
+
+    .marquee {
+        display: flex;
+    }
+
+    .marquee_box {
+        display: block;
+        position: relative;
+        width: 80%;
+        height: 0.7rem;
+        overflow: hidden;
+    }
+
+    .marquee_list {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .marquee_top {
+        transition: all 0.5s;
+        margin-top: -0.7rem
+    }
+
+    .marquee_list li {
+        height: 0.7rem;
+        line-height: 0.7rem;
+        font-size: 0.24rem;
+        color: #000000;
+    }
+
+    .marquee_list li span {
+        padding: 0 2px;
+    }
+</style>
+<div class="gonggao cl">
+    <div class="img fl">
+        <img src="../image/ba.png" alt="">
+    </div>
+    <div class="vueBox fl" style="width:68%">
+        <div class="marquee">
+            <div class="marquee_box" style="width:100%;overflow:hidden;white-space: nowrap;text-overflow: ellipsis;">
+                <ul class="marquee_list" :class="{marquee_top:animate}">
+                    <li v-for="(val, index) in arr"
+                        style="width:100%;overflow:hidden;white-space: nowrap;text-overflow: ellipsis;">
+                        <p @click="dianjil(val.id)" tapmode="light"
+                            style="display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp:1;overflow: hidden;">
+                            {{val.title}}</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var appdata = new Vue({
+        el: '#app',
+        data: {
+
+        },
+        created: function () {
+            setInterval(this.showMarquee, 3000)
+        },
+        methods: {
+            showMarquee: function () {
+                if (this.arr.length < 1 || this.arr.length == 1) {
+                    return
+                } else {
+                    this.animate = true;
+                    setTimeout(() => {
+                        this.arr.push(this.arr[0]);
+                        this.arr.shift();
+                        this.animate = false;
+                    }, 500)
+                }
+            },
+        }
+    })
+</script>

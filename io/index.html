@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+    </body>
+    <script type="text/javascript" src="./socket.io.js"></script>
+    <script>
+        // var ws = new WebSocket('wss://coinw.to/websocket/public');
+        // ws.onopen = function () {
+        //   // ws.send("ping");
+        //       // //请求参数
+        //       var param = {"event":"addChannel","channel":"/return/latest/deal","data":{"currencyPair":"ENO_CNYT"}};
+        //       // // 使用 send() 方法发送数据
+        //       ws.send(JSON.stringify(param));
+        //       alert("数据发送中...");
+        //   }
+        //   //接收到服务端响应的数据时，触发事件
+        //   ws.onmessage = function (evt) {
+        //       var data = evt.data;
+        //       console.log(data)
+        //       alert("收到数据..."+data);
+        //   }
+        //   // 断开 web socket 连接成功触发事件
+        //   ws.onclose = function () {
+        //       alert("连接已关闭...");
+        //   };
+        // var socket = io.connect('http://47.105.105.155:3000/');
+        var socket = io.connect('http://47.93.15.93:3333/');
+        socket.on('connect_error', function(data){
+            console.log(data + ' - connect_error');
+        });
+
+        socket.on('connect_timeout', function(data){
+            console.log(data + ' - connect_timeout');
+        });
+
+        socket.on('connect', function () {
+            console.log('连接成功');
+        });
+        socket.on('refresh', function (data) {
+            console.log(data);
+        });
+    </script>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="canvas" style="border: 1px  solid red;"></canvas>
+</body>
+
+</html>
+<script>
+    var ball = {
+        x: 500,
+        y: 100,
+        r: 20,
+        g: 2,
+        vx: 20,
+        vy: 0,
+        color: "#005588"
+    }
+    window.onload = function () {
+        function draw() {
+            var cancas = document.getElementById('canvas')
+            cancas.height = 800
+            cancas.width = 800
+            var ctx = canvas.getContext('2d')
+
+            ctx.fillStyle = 'rgb(200,0,0)'
+            ctx.fillRect(10, 10, 100, 100)
+            ctx.fillStyle = 'rgba(0,0,200,0.5)'
+            ctx.fillRect(50, 50, 100, 100)
+
+
+            ctx.beginPath(); //新建一条path
+            ctx.moveTo(600, 200); //把画笔移动到指定的坐标
+            ctx.lineTo(400, 200);  //绘制一条从当前位置到指定坐标(200, 50)的直线.
+            //闭合路径。会拉一条从当前点到path起始点的直线。如果当前点与起始点重合，则什么都不做
+            ctx.closePath();
+            ctx.stroke(); //绘制路径。
+
+            ctx.fillStyle = "rgba(0,120,200,1)"
+            ctx.beginPath();
+            ctx.moveTo(300, 300);
+            ctx.lineTo(400, 50);
+            ctx.lineTo(200, 200);
+            ctx.fillStyle = 'rgb(200,0,0)'
+            ctx.closePath(); //虽然我们只绘制了两条线段，但是closePath会closePath，仍然是一个3角形
+            ctx.fill(); //描边。stroke不会自动closePath()
+
+            ctx.beginPath();
+            ctx.fillStyle = 'rgba(0,0,200,0.5)'
+            ctx.arc(200, 300, 100, 0, Math.PI / 0.665, false);
+            ctx.fill();
+
+
+        }
+        draw()
+    }
+</script>
