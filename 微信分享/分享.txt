@@ -1,0 +1,6 @@
+  <feature name="wxPlus">
+     <param name="urlScheme" value="wxb45e77f925d24b5c"/>
+     <param name="apiKey" value="wxb45e77f925d24b5c"/>
+     <param name="apiSecret" value="ea27c0493ad7b10c9f7c5b90915c20ea"/>
+     <param name="universalLink" value="https://tuantuan.vip/app/"/>
+   </feature>

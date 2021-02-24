@@ -1,0 +1,18 @@
+        var h=$('.swiper-slide').height()
+        var w=$('.swiper-slide').width()
+        // 轮博图索引（全局）myswiper.activeIndex
+ 
+        var element=$('.swiper-slide')[myswiper.activeIndex]
+        // 合成海报
+        html2canvas(document.getElementsByClassName('swiper-slide')[myswiper.activeIndex], {
+            allowTaint: true,
+            useCORS: true,
+            dpi: 300,
+            logging: false,
+            scale:window.devicePixelRatio*2,
+            width:w,
+            height:h,
+            async:true
+        }).then(canvas => {
+            dataUrl=canvas.toDataURL('image/png',1.0) 
+    });

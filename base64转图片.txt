@@ -1,0 +1,10 @@
+    var trans = api.require('trans');
+            var imgName = NewGuid() + ".jpg";
+            trans.saveImage({
+                      base64Str: dataUrl.slice(22),  //处理base64，不处理会闪退
+                      imgPath:"fs://",
+                      album:true,  //是否需要保存到相册
+                      imgName
+                  }, (ret, err)=> {
+                    alert('保存成功,请前往相册查看');
+                  });
